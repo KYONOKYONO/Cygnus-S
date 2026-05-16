@@ -9,6 +9,20 @@
 #define SCROLL 5
 #define NUM 6
 
+&mmv {
+    delay-ms = <20>;
+    trigger-period-ms = <5>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <2>;
+};
+
+&msc {
+    delay-ms = <3>;
+    trigger-period-ms = <3>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <0>;
+};
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
