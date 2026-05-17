@@ -68,13 +68,6 @@
         };
 
         // ⬇️ ここから新しく追加
-
-        to_0_kp: to_0_kp {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-            label = "TO_0_KP";
-        };
     };
 
     behaviors {
@@ -104,7 +97,7 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&to_0_kp>;
+            bindings = <&kp>, <&to_layer_0>;
         };
 
         to_layer: to_layer {
