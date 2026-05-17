@@ -117,7 +117,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&to_layer_0>;
+            bindings = <&mo>, <&tm0>;
         };
 
         lt_to_l2: lt_to_l2 {
@@ -126,7 +126,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&to_layer_0>;
+            bindings = <&mo>, <&tm0>;
         };
 
         lt_to_l10: lt_to_l10 {
@@ -135,7 +135,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&to_layer_0>;
+            bindings = <&mo>, <&tm0>;
         };
 
     };
