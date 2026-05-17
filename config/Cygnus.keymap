@@ -116,7 +116,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LT_TO_L3";
             #binding-cells = <2>;  // 👈 2つのパラメーター（レイヤー番号と、タップ時のキー）を受け取れるようにします
-            flavor = "hold-preferred";
+            flavor = "tap-unless-interrupted";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>; // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
         };
@@ -125,7 +125,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LT_TO_L2";
             #binding-cells = <2>;  // 👈 2つのパラメーター（レイヤー番号と、タップ時のキー）を受け取れるようにします
-            flavor = "hold-preferred";
+            flavor = "tap-unless-interrupted";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>; // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
         };
@@ -134,7 +134,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LT_TO_L10";
             #binding-cells = <2>;  // 👈 2つのパラメーター（レイヤー番号と、タップ時のキー）を受け取れるようにします
-            flavor = "hold-preferred";
+            flavor = "tap-unless-interrupted";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>; // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
         };
