@@ -79,7 +79,13 @@
         alt_tab_start: alt_tab_start {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LEFT_ALT>, <&macro_tap>, <&kp TAB>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp TAB>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
 
             label = "ALT_TAB_START";
         };
@@ -179,10 +185,10 @@
 
         MOUSE {
             bindings = <
-&tm0 Q Q  &tm0 W W  &tm0 E E                  &tm0 R R          &tm0 T T                                                  &trans  &trans    &trans    &trans    &trans
-&tm0 A A  &tm0 S S  &tm0 D D                  &tm0 F F          &tm0 G G          &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
-&tm0 Z Z  &tm0 X X  &tm0 C C                  &tm0 V V          &tm0 B B          &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
-&trans    &trans    &alt_hold_tap LEFT_ALT 0  &tm0 LANG2 LANG2  &tm0 SPACE SPACE  &tm0 LANG1 LANG1                &trans  &trans                                &trans
+&tm0 Q Q  &tm0 W W  &tm0 E E  &tm0 R R        &tm0 T T                                               &trans  &trans    &trans    &trans    &trans
+&tm0 A A  &tm0 S S  &tm0 D D  &tm0 F F        &tm0 G G       &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
+&tm0 Z Z  &tm0 X X  &tm0 C C  &tm0 V V        &tm0 B B       &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
+&trans    &trans    &trans    &to_layer 10 0  &to_layer 2 0  &to_layer 3 0                   &trans  &trans                                &trans
             >;
         };
 
