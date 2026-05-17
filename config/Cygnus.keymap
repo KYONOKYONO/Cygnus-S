@@ -75,20 +75,6 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_0_KP";
         };
-
-        alt_tab_start: alt_tab_start {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp LEFT_ALT>,
-                <&macro_tap>,
-                <&kp TAB>,
-                <&macro_release>,
-                <&kp LEFT_ALT>;
-
-            label = "ALT_TAB_START";
-        };
     };
 
     behaviors {
@@ -125,15 +111,6 @@
             compatible = "zmk,behavior-hold-tap";
             label = "TO_LAYER";
             bindings = <&mo>, <&to>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
-
-        alt_hold_tap: alt_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "ALT_HOLD_TAP";
-            bindings = <&kp>, <&alt_tab_start>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
