@@ -40,7 +40,6 @@
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 12>;
-            layers = <0>;
         };
 
         shift_tab {
@@ -76,6 +75,14 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_0_KP";
         };
+
+        alt_tab_start: alt_tab_start {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press>, <&kp LEFT_ALT>, <&macro_tap>, <&kp TAB>;
+
+            label = "ALT_TAB_START";
+        };
     };
 
     behaviors {
@@ -108,10 +115,19 @@
             bindings = <&kp>, <&to_0_kp>;
         };
 
-        tm_hold_tap: tm_hold_tap {
+        to_layer: to_layer {
             compatible = "zmk,behavior-hold-tap";
-            label = "TM_HOLD_TAP";
-            bindings = <&mo>, <&tm0>;
+            label = "TO_LAYER";
+            bindings = <&mo>, <&to>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
+        alt_hold_tap: alt_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "ALT_HOLD_TAP";
+            bindings = <&kp>, <&alt_tab_start>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -163,10 +179,10 @@
 
         MOUSE {
             bindings = <
-&tm0 Q Q  &tm0 W W  &tm0 E E  &tm0 R R          &tm0 T T                                                  &trans  &trans    &trans    &trans    &trans
-&tm0 A A  &tm0 S S  &tm0 D D  &tm0 F F          &tm0 G G          &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
-&tm0 Z Z  &tm0 X X  &tm0 C C  &tm0 V V          &tm0 B B          &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
-&trans    &trans    &trans    &tm0 LANG2 LANG2  &tm0 SPACE SPACE  &tm0 LANG1 LANG1                &trans  &trans                                &trans
+&tm0 Q Q  &tm0 W W  &tm0 E E                  &tm0 R R        &tm0 T T                                               &trans  &trans    &trans    &trans    &trans
+&tm0 A A  &tm0 S S  &tm0 D D                  &tm0 F F        &tm0 G G       &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
+&tm0 Z Z  &tm0 X X  &tm0 C C                  &tm0 V V        &tm0 B B       &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
+&trans    &trans    &alt_hold_tap LEFT_ALT 0  &to_layer 10 0  &to_layer 2 0  &to_layer 3 0                   &trans  &trans                                &trans
             >;
         };
 
