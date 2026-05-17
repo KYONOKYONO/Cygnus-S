@@ -91,15 +91,6 @@
 
         // ⬇️ ここから新しく追加
 
-        tm0: to_layer_0_key_press {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TO_LAYER_0_KEY_PRESS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&to_layer_0>;
-        };
-
         to_layer: to_layer {
             compatible = "zmk,behavior-hold-tap";
             label = "TO_LAYER";
@@ -107,6 +98,16 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
+        };
+
+        tm_new: tm_new {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TM_NEW";
+            bindings = <&kp>, <&to_layer_0>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
         };
     };
 
@@ -155,10 +156,10 @@
 
         MOUSE {
             bindings = <
-&tm0 Q Q  &tm0 W W  &tm0 E E  &tm0 R R          &tm0 T T                                                  &trans  &trans    &trans    &trans    &trans
-&tm0 A A  &tm0 S S  &tm0 D D  &tm0 F F          &tm0 G G          &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
-&tm0 Z Z  &tm0 X X  &tm0 C C  &tm0 V V          &tm0 B B          &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
-&trans    &trans    &trans    &tm0 LANG2 LANG2  &tm0 SPACE SPACE  &tm0 LANG1 LANG1                &trans  &trans                                &trans
+&tm_new Q Q  &tm_new W W  &tm_new E E  &tm_new R R          &tm_new T T                                           &trans  &trans    &trans    &trans    &trans
+&tm_new A A  &tm_new S S  &tm_new D D  &tm_new F F          &tm_new G G          &trans                   &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
+&tm_new Z Z  &tm_new X X  &tm_new C C  &tm_new V V          &tm_new B B          &tm_new APOS APOS        &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
+&trans       &trans       &trans       &tm_new LANG2 LANG2  &tm_new SPACE SPACE  &tm_new LANG1 LANG1      &trans  &trans                                &trans
             >;
         };
 
