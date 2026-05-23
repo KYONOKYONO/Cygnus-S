@@ -117,7 +117,8 @@
             flavor = "tap-unless-interrupted";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
- // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
+
+            // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
         };
 
         lt_to_l2: lt_to_l2 {
@@ -127,7 +128,8 @@
             flavor = "tap-unless-interrupted";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
- // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
+
+            // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
         };
 
         lt_to_l10: lt_to_l10 {
@@ -137,7 +139,8 @@
             flavor = "tap-unless-interrupted";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
- // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
+
+            // 👈 タップ側をマクロではなく「マクロ風キーコード」にします。これでビルドエラーが100%消えます！
         };
     };
 
@@ -187,7 +190,7 @@
         MOUSE {
             bindings = <
 &tm0 Q Q          &tm0 W W                &tm0 E E                &tm0 R R             &tm0 T T                                                   &trans  &trans    &trans    &trans    &trans
-&tm0 A A          &tm0 S S                &tm0 D D                &tm0 F F             &tm0 G G           &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB3  &mkp MB2
+&tm0 A A          &tm0 S S                &tm0 D D                &tm0 F F             &tm0 G G           &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB2  &mkp MB2
 &tm0 Z Z          &tm0 X X                &tm0 C C                &tm0 V V             &tm0 B B           &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
 &tm0 LCTRL LCTRL  &tm0 LEFT_GUI LEFT_GUI  &tm0 LEFT_ALT LEFT_ALT  &lt_to_l10 10 LANG2  &lt_to_l2 2 SPACE  &lt_to_l3 3 LANG1               &trans  &trans                                &trans
             >;
