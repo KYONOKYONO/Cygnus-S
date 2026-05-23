@@ -15,13 +15,13 @@
 };
 
 / {
-    /* ─── 拡張モード解説：高機能AML listenerの定義 ─── */
+    /* ─── 高機能AML listenerの定義 ─── */
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
         /* ① トラックボール検知後、10秒間（10000ms）自動でレイヤー4（MOUSE）を維持 */
-        processors = <&zip_temp_layer 4 10000>;
+        input-processors = <&zip_temp_layer 4 10000>;
         
         /* ② 下記のキーインデックス（マウスキー）以外を押した瞬間に即座にレイヤーを抜ける */
         excluded-positions = <18 19 20 21 30 31 32 33>; 
@@ -63,8 +63,8 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
-        /* ─── 拡張モード解説 ─── */
-        /* Input Processor側で10秒維持を高度に制御するため、従来の簡易移行は無効（0x00）化 */
+        /* ─── ドライバー競合防止設定 ─── */
+        /* 新しいInput Processor側で高度に制御するため、従来の簡易移行は無効（0x00）化 */
         automouse-layer = <0x00>;
         scroll-layers = <5>;
     };
