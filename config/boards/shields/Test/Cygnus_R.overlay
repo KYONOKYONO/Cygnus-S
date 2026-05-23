@@ -15,16 +15,26 @@
 };
 
 / {
-    /* ─── 高機能AML listenerの定義 ─── */
+    /* ─── 1. オートマウスレイヤー（AML）の機能定義（設計図） ─── */
+    zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        
+        /* 誤爆防止：キーボード入力直後（200ms以内）は、トラックボールが動いてもAMLを発動しない */
+        require-prior-idle-ms = <200>;
+        
+        /* 除外キー（マウスキー）：以下のキーを押したときはAMLを維持する。
+           これ以外のキー（AやSなどの普通のキー）を押した瞬間、即座にAMLを解除する。*/
+        excluded-positions = <18 19 20 21 30 31 32 33>;
+    };
+
+    /* ─── 2. トラックボールの入力を監視して実行するリスナー ─── */
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
-        /* ① トラックボール検知後、10秒間（10000ms）自動でレイヤー4（MOUSE）を維持 */
+        /* トラックボール検知後、10秒間（10000ms）レイヤー4（MOUSE）を維持する */
         input-processors = <&zip_temp_layer 4 10000>;
-        
-        /* ② 下記のキーインデックス（マウスキー）以外を押した瞬間に即座にレイヤーを抜ける */
-        excluded-positions = <18 19 20 21 30 31 32 33>; 
     };
 };
 
@@ -62,10 +72,7 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-
-        /* ─── ドライバー競合防止設定 ─── */
-        /* 新しいInput Processor側で高度に制御するため、従来の簡易移行は無効（0x00）化 */
-        automouse-layer = <0x00>;
         scroll-layers = <5>;
+        // snipe-layers = <1>;
     };
 };
