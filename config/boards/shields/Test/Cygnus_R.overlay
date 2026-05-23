@@ -14,19 +14,6 @@
         ;
 };
 
-/ {
-    /* ─── 1. オートマウスレイヤー（AML）の機能定義 ─── */
-    zip_temp_layer: zip_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #input-processor-cells = <2>;
-        
-        /* 誤爆防止：キーボード入力直後（200ms以内）は反応しない */
-        require-prior-idle-ms = <200>;
-        
-        /* マウスキーを押したときはレイヤーを維持するキーポジション */
-        excluded-positions = <18 19 20 21 30 31 32 33>;
-    };
-
     /* ─── 2. トラックボールのリスナー（AMLを呼び出す） ─── */
     trackball_listener {
         compatible = "zmk,input-listener";
