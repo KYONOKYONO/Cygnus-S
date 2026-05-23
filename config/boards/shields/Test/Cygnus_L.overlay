@@ -14,3 +14,17 @@
 &left_encoder {
     status = "okay";
 };
+
+/ {
+    /* ─── オートマウスレイヤー（AML）の機能定義 ─── */
+    zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        
+        /* 誤爆防止：200msの保護 */
+        require-prior-idle-ms = <200>;
+        
+        /* マウスキーを押したときはレイヤーを維持するキーポジション */
+        excluded-positions = <18 19 20 21 30 31 32 33>;
+    };
+};
