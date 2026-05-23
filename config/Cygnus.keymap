@@ -28,13 +28,6 @@
     quick-tap-ms = <0>;
 };
 
-/ {
-    /* AML機能のための定義 */
-    zip_temp_layer: zip_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #binding-cells = <2>;
-    };
-
     combos {
         compatible = "zmk,combos";
         
