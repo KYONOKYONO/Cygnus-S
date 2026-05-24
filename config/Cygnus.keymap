@@ -1,9 +1,10 @@
+DTS
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-/* 💡修正箇所：警告を消すために一度リセット（#undef）してから定義し直します */
+/* 警告回避のためのリセット */
 #undef ZMK_POINTING_DEFAULT_SCRL_VAL
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 120 
 
@@ -31,18 +32,13 @@
     quick-tap-ms = <0>;
 };
 
-/* 💡修正箇所：目標3,5「マウスキーを押したらタイムアウトを延長する」を実現するコード */
-&mkp {
-    input-processors = <&zip_temp_layer 4 10000>;
-};
-
 / {
     /* ─── オートマウスレイヤー（AML）の機能定義 ─── */
     zip_temp_layer: zip_temp_layer {
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
         
-        /* 誤爆防止：200msの保護（目標6 達成済み） */
+        /* 誤爆防止：200msの保護 */
         require-prior-idle-ms = <200>;
         /* マウスキーを押したときはレイヤーを維持するキーポジション */
         excluded-positions = <18 19 20 21 30 31 32 33>;
