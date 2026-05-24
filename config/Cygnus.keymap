@@ -142,7 +142,6 @@
                 &mt LEFT_SHIFT Z &kp X &kp C &kp V &kp B &lt 6 SINGLE_QUOTE &kp SEMICOLON &kp N &kp M &kp COMMA &kp DOT &mt RIGHT_SHIFT SLASH
                 &kp LCTRL &kp LEFT_WIN &kp LEFT_ALT &lt 10 LANG2 &lt 2 SPACE &lt 3 LANG1 &lt 7 BACKSPACE &lt 1 ENTER &kp DEL
             >;
-            /* 💡安全な通常のマウススクロールに戻しました（Ctrlを自分で押せば全アプリで拡大縮小になります） */
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
         };
 
@@ -153,7 +152,6 @@
                 &mt LEFT_SHIFT LS(INT_RO) &kp EXCLAMATION &kp LEFT_BRACKET &kp HASH &trans &trans &trans &trans &kp LS(RIGHT_BRACKET) &kp LS(NON_US_HASH) &kp LS(INT_YEN) &kp RIGHT_SHIFT
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
-            /* 💡まことさんのエンコーダー特性に合わせ、上スライドで音量UP、下スライドで音量DOWNになるよう配置を調整しました */
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
@@ -180,7 +178,8 @@
             bindings = <
                 &tm0 Q Q &tm0 W W &tm0 E E &tm0 R R &tm0 T T &trans &trans &trans &trans &trans
                 &tm0 A A &tm0 S S &tm0 D D &tm0 F F &tm0 G G &trans &trans &trans &mkp MB1 &mkp MB1 &mkp MB2 &mkp MB2
-                &tm0 Z Z &tm0 X X &tm0 C C &tm0 V V &tm0 B B &tm0 APOSTROPHE APOSTROPHE &trans &trans &mkp MB4 &mkp MB4 &mkp MB5 &mkp MB5
+                /* 💡修正箇所：一番左端を &tm0 LEFT_SHIFT Z に変更。これでマウスレイヤー中も長押しでShiftが効きます */
+                &tm0 LEFT_SHIFT Z &tm0 X X &tm0 C C &tm0 V V &tm0 B B &tm0 APOSTROPHE APOSTROPHE &trans &trans &mkp MB4 &mkp MB4 &mkp MB5 &mkp MB5
                 &tm0 LCTRL LCTRL &tm0 LEFT_GUI LEFT_GUI &tm0 LEFT_ALT LEFT_ALT &lt_to_l10 10 LANG2 &lt_to_l2 2 SPACE &lt_to_l3 3 LANG1 &trans &trans &trans
             >;
         };
