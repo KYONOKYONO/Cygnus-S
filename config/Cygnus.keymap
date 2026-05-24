@@ -81,17 +81,6 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_0_KP";
         };
-        /* 💡追加：全アプリ共通で使える拡大・縮小マクロ（Ctrlキーを押しながらホイール回転） */
-        zoom_in: zoom_in {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&msc SCRL_UP>, <&macro_release &kp LCTRL>;
-        };
-        zoom_out: zoom_out {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&msc SCRL_DOWN>, <&macro_release &kp LCTRL>;
-        };
     };
 
     behaviors {
@@ -141,12 +130,6 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
         };
-        /* 💡追加：上記マクロをエンコーダーの回転（センサー）に結びつける定義 */
-        rot_zoom: rot_zoom {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&zoom_in>, <&zoom_out>;
-        };
     };
 
     keymap {
@@ -159,8 +142,7 @@
                 &mt LEFT_SHIFT Z &kp X &kp C &kp V &kp B &lt 6 SINGLE_QUOTE &kp SEMICOLON &kp N &kp M &kp COMMA &kp DOT &mt RIGHT_SHIFT SLASH
                 &kp LCTRL &kp LEFT_WIN &kp LEFT_ALT &lt 10 LANG2 &lt 2 SPACE &lt 3 LANG1 &lt 7 BACKSPACE &lt 1 ENTER &kp DEL
             >;
-            /* 💡変更：デフォルトレイヤーでは、全アプリで動作する「ズームマクロ」を割り当て */
-            sensor-bindings = <&rot_zoom>;
+            sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
         };
 
         layer_1 {
@@ -170,8 +152,6 @@
                 &mt LEFT_SHIFT LS(INT_RO) &kp EXCLAMATION &kp LEFT_BRACKET &kp HASH &trans &trans &trans &trans &kp LS(RIGHT_BRACKET) &kp LS(NON_US_HASH) &kp LS(INT_YEN) &kp RIGHT_SHIFT
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
-            /* 💡設定：レイヤー1に切り替わっている間は、上スライドで音量増、下スライドで音量減 */
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         layer_2 {
