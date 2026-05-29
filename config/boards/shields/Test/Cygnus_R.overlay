@@ -1,4 +1,6 @@
 #include "Cygnus.dtsi"
+/* 💡追加：スナイパー機能（scaler）の設計図を読み込む */
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -20,7 +22,14 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
-        /* トラックボール検知後、10秒間（10000ms）レイヤー4（MOUSE）を維持 */
+        /* 💡変更：スナイパーレイヤー（9）がアクティブな時の専用処理 */
+        /* 移動量を 1/3 に間引き（減速）しつつ、マウスレイヤーにも移行させる */
+        sniper {
+            layers = <9>;
+            input-processors = <&zip_xy_scaler 1 3>, <&zip_temp_layer 4 10000>;
+        };
+
+        /* デフォルト：トラックボール検知後、10秒間レイヤー4（MOUSE）を維持 */
         input-processors = <&zip_temp_layer 4 10000>;
     };
 };
@@ -60,8 +69,6 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        
-        /* 旧ドライバーのAMLを無効化し、Input Processorに一任する */
         automouse-layer = <0>;
         scroll-layers = <5>;
     };
