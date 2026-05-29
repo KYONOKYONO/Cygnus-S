@@ -4,16 +4,16 @@
 #include <dt-bindings/zmk/pointing.h>
 
 /* 警告回避のためのリセット */
-
 #undef ZMK_POINTING_DEFAULT_SCRL_VAL
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 120 
 
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 120
 #define MOUSE 4
 #define SCROLL 5
 #define NUM 6
+/* 💡追加：スナイパーレイヤーを最新構成に合わせて「9」として定義 */
+#define SNIPER 9
 
 // --- Global Settings ---
-
 &mmv {
     delay-ms = <20>;
     trigger-period-ms = <5>;
@@ -35,44 +35,35 @@
 
 / {
     /* ─── オートマウスレイヤー（AML）の機能定義 ─── */
-
     zip_temp_layer: zip_temp_layer {
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
-
+        
         /* 誤爆防止：200msの保護 */
-
         require-prior-idle-ms = <200>;
-
         /* マウスキーを押したときはレイヤーを維持するキーポジション */
-
         excluded-positions = <18 19 20 21 30 31 32 33>;
     };
 
     combos {
         compatible = "zmk,combos";
-
         double_quotation {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <20 21>;
         };
-
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 12>;
         };
-
         shift_tab {
             bindings = <&kp LS(TAB)>;
             key-positions = <12 13>;
         };
-
         muhenkan {
             bindings = <&kp INT5>;
             key-positions = <23 22>;
             layers = <0>;
         };
-
         COMBO_ESC {
             bindings = <&kp ESC>;
             key-positions = <0 1>;
@@ -86,7 +77,6 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
-
         to_0_kp: to_0_kp {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -100,20 +90,16 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
             bindings = <&mo>, <&to_layer_0>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
-
         ROTATE: ROTATE {
             compatible = "zmk,behavior-sensor-rotate-var";
             label = "ROTATE";
             #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
-
             tap-ms = <20>;
         };
-
         tm0: to_layer_0_key_press {
             compatible = "zmk,behavior-hold-tap";
             label = "TO_LAYER_0_KEY_PRESS";
@@ -122,7 +108,6 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&to_0_kp>;
         };
-
         lt_to_l3: lt_to_l3 {
             compatible = "zmk,behavior-hold-tap";
             label = "LT_TO_L3";
@@ -131,7 +116,6 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
         };
-
         lt_to_l2: lt_to_l2 {
             compatible = "zmk,behavior-hold-tap";
             label = "LT_TO_L2";
@@ -140,7 +124,6 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
         };
-
         lt_to_l10: lt_to_l10 {
             compatible = "zmk,behavior-hold-tap";
             label = "LT_TO_L10";
@@ -149,6 +132,16 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to_0_kp>;
         };
+        /* 💡追加：Fキー用のスナイパーモード（文字入力時は150msの保護インターロックが働く） */
+        lt_sniper: lt_sniper {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_SNIPER";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            require-prior-idle-ms = <150>;
+            bindings = <&mo>, <&kp>;
+        };
     };
 
     keymap {
@@ -156,32 +149,30 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R        &kp T                                                 &kp Y        &kp U  &lt 5 I    &lt 5 O  &kp P
-&kp A             &kp S         &kp D         &kp F        &kp G        &kp LS(LG(S))           &kp BACKSPACE    &kp H        &kp J  &kp K      &kp L    &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V        &kp B        &lt 6 SINGLE_QUOTE      &kp SEMICOLON    &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 8 LANG2  &lt 2 SPACE  &lt 3 LANG1             &lt 7 BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp Q             &kp W         &kp E         &kp R          &kp T                                          &kp Y              &kp U      &lt 5 I    &lt 5 O  &kp P
+&kp A             &kp S         &kp D         &lt_sniper 9 F &kp G        &kp LS(LG(S))      &kp BACKSPACE  &kp H              &kp J      &kp K      &kp L    &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V          &kp B        &lt 6 SINGLE_QUOTE &kp SEMICOLON  &kp N              &kp M      &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 8 LANG2    &lt 2 SPACE  &lt 3 LANG1        &lt 7 BACKSPACE  &lt 1 ENTER        &kp DEL
             >;
-
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
         };
 
         layer_1 {
             bindings = <
-&kp LS(NUMBER_2)           &kp LS(NUMBER_6)  &kp LS(SINGLE_QUOTE)  &kp LS(COMMA)  &kp LS(DOT)                      &trans  &kp RIGHT_BRACKET      &kp NON_US_HASH      &kp LS(EQUAL)    &trans
-&kp LS(NUMBER_7)           &kp DOLLAR        &kp PERCENT           &kp EQUAL      &trans       &trans      &trans  &trans  &kp LS(NUMBER_8)       &kp LS(NUMBER_9)     &kp INT_YEN      &trans
-&mt LEFT_SHIFT LS(INT_RO)  &kp EXCLAMATION   &kp LEFT_BRACKET      &kp HASH       &trans       &trans      &trans  &trans  &kp LS(RIGHT_BRACKET)  &kp LS(NON_US_HASH)  &kp LS(INT_YEN)  &kp RIGHT_SHIFT
-&trans                     &trans            &trans                &trans         &trans       &trans      &trans  &trans                                                               &trans
+&kp LS(NUMBER_2)           &kp LS(NUMBER_6)  &kp LS(SINGLE_QUOTE)  &kp LS(COMMA)  &kp LS(DOT)        &trans  &kp RIGHT_BRACKET      &kp NON_US_HASH      &kp LS(EQUAL)    &trans
+&kp LS(NUMBER_7)           &kp DOLLAR        &kp PERCENT           &kp EQUAL      &trans  &trans     &trans  &trans                 &kp LS(NUMBER_8)     &kp LS(NUMBER_9) &kp INT_YEN &trans
+&mt LEFT_SHIFT LS(INT_RO)  &kp EXCLAMATION   &kp LEFT_BRACKET      &kp HASH       &trans  &trans     &trans  &trans                 &kp LS(RIGHT_BRACKET) &kp LS(NON_US_HASH) &kp LS(INT_YEN) &kp RIGHT_SHIFT
+&trans                     &trans            &trans                &trans         &trans  &trans     &trans  &trans                 &trans
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         layer_2 {
             bindings = <
-&kp LS(APOS)       &kp N7  &kp N8  &kp N9  &kp LS(SEMICOLON)                               &trans      &kp F7  &kp F8  &kp F9  &kp F12
-&kp SLASH          &kp N4  &kp N5  &kp N6  &kp MINUS          &trans         &kp LS(APOS)  &kp PERIOD  &kp F4  &kp F5  &kp F6  &kp F11
-&mt LEFT_SHIFT N0  &kp N1  &kp N2  &kp N3  &kp LS(MINUS)      &kp EQUAL      &kp SLASH     &trans      &kp F1  &kp F2  &kp F3  &kp F10
-&trans             &trans  &trans  &trans  &trans             &trans         &trans        &trans                              &trans
+&kp LS(APOS)       &kp N7  &kp N8  &kp N9  &kp LS(SEMICOLON)                                 &trans      &kp F7  &kp F8  &kp F9  &kp F12
+&kp SLASH          &kp N4  &kp N5  &kp N6  &kp MINUS          &trans           &kp LS(APOS)  &kp PERIOD  &kp F4  &kp F5  &kp F6  &kp F11
+&mt LEFT_SHIFT N0  &kp N1  &kp N2  &kp N3  &kp LS(MINUS)      &kp EQUAL        &kp SLASH     &trans      &kp F1  &kp F2  &kp F3  &kp F10
+&trans             &trans  &trans  &trans  &trans             &trans           &trans        &trans                              &trans
             >;
         };
 
@@ -190,18 +181,17 @@
 &kp PG_UP       &kp LC(LS(TAB))   &kp UP_ARROW          &kp LC(TAB)        &kp PG_DN                                   &kp LG(TAB)   &kp TAB             &kp LG(UP_ARROW)  &kp LS(TAB)        &trans
 &kp HOME        &kp LEFT_ARROW    &kp DOWN_ARROW        &kp RIGHT_ARROW    &kp END    &trans      &kp LA(PRINTSCREEN)  &kp LG(LEFT)  &kp LA(LEFT_ARROW)  &kp LG(DOWN)      &kp LA(RIGHT)      &kp LG(RIGHT)
 &kp LEFT_SHIFT  &kp LS(LC(LEFT))  &kp LS(LC(UP_ARROW))  &kp LS(LC(RIGHT))  &trans     &trans      &kp LS(LG(S))        &trans        &kp LS(LG(LEFT))    &kp LA(F4)        &kp LS(LG(RIGHT))  &trans
-&trans          &trans            &kp LS(LC(DOWN))      &trans             &trans     &trans      &kp BACKSPACE        &kp LEFT_ALT                                                           &trans
+&trans          &trans            &kp LS(LC(DOWN))      &trans             &trans     &trans      &kp BACKSPACE        &kp LEFT_ALT                      &trans
             >;
-
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
 
         MOUSE {
             bindings = <
-&tm0 Q Q           &tm0 W W                &tm0 E E                &tm0 R R            &tm0 T T                                                   &trans  &trans    &trans    &trans    &trans
-&tm0 A A           &tm0 S S                &tm0 D D                &tm0 F F            &tm0 G G           &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB2  &mkp MB2
-&tm0 LEFT_SHIFT Z  &tm0 X X                &tm0 C C                &tm0 V V            &tm0 B B           &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
-&tm0 LCTRL LCTRL   &tm0 LEFT_GUI LEFT_GUI  &tm0 LEFT_ALT LEFT_ALT  &lt_to_l10 8 LANG2  &lt_to_l2 2 SPACE  &lt_to_l3 3 LANG1               &trans  &trans                                &trans
+&tm0 Q Q           &tm0 W W                &tm0 E E                &tm0 R R            &tm0 T T                                            &trans  &trans    &trans    &trans    &trans
+&tm0 A A           &tm0 S S                &tm0 D D                &tm0 F F            &tm0 G G           &trans                           &trans  &trans    &mkp MB1  &mkp MB1  &mkp MB2  &mkp MB2
+&tm0 LEFT_SHIFT Z  &tm0 X X                &tm0 C C                &tm0 V V            &tm0 B B           &tm0 APOSTROPHE APOSTROPHE       &trans  &trans    &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
+&tm0 LCTRL LCTRL   &tm0 LEFT_GUI LEFT_GUI  &tm0 LEFT_ALT LEFT_ALT  &lt_to_l10 8 LANG2  &lt_to_l2 2 SPACE  &lt_to_l3 3 LANG1                &trans  &trans    &trans
             >;
         };
 
@@ -234,10 +224,20 @@
 
         layer_8 {
             bindings = <
-&trans  &kp LS(LC(N7))  &kp LS(LC(N8))  &kp LS(LC(N9))  &trans                             &trans     &kp LC(R)  &kp LS(LC(R))  &kp LC(F)  &trans
-&trans  &kp LS(LC(N4))  &kp LS(LC(N5))  &kp LS(LC(N6))  &trans  &trans      &kp LA(S)      &trans     &kp LC(U)  &kp LC(Q)      &kp LC(E)  &trans
-&trans  &kp LS(LC(N1))  &kp LS(LC(N2))  &kp LS(LC(N3))  &trans  &trans      &trans         &kp LC(N)  &trans     &kp ESC        &trans     &trans
-&trans  &trans          &trans          &trans          &trans  &trans      &kp BACKSPACE  &trans                                          &trans
+&trans  &kp LS(LC(N7))  &kp LS(LC(N8))  &kp LS(LC(N9))  &trans                                 &trans     &kp LC(R)  &kp LS(LC(R))  &kp LC(F)  &trans
+&trans  &kp LS(LC(N4))  &kp LS(LC(N5))  &kp LS(LC(N6))  &trans  &trans          &kp LA(S)      &trans     &kp LC(U)  &kp LC(Q)      &kp LC(E)  &trans
+&trans  &kp LS(LC(N1))  &kp LS(LC(N2))  &kp LS(LC(N3))  &trans  &trans          &trans         &kp LC(N)  &trans     &kp ESC        &trans     &trans
+&trans  &trans          &trans          &trans          &trans  &trans          &kp BACKSPACE  &trans                                          &trans
+            >;
+        };
+
+        /* 💡追加：スナイパーレイヤー（減速専用の透明レイヤー・layer_9） */
+        layer_9 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
     };
