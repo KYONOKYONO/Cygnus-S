@@ -156,10 +156,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R         &kp T                                                 &kp Y        &kp U  &lt 5 I    &lt 5 O  &lt 8 P
-&kp A             &kp S         &kp D         &kp F         &kp G        &kp LS(LG(S))           &kp BACKSPACE    &kp H        &kp J  &kp K      &kp L    &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V         &kp B        &lt 6 SINGLE_QUOTE      &kp SEMICOLON    &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 10 LANG2  &lt 2 SPACE  &lt 3 LANG1             &lt 7 BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp Q             &kp W         &kp E         &kp R        &kp T                                                 &kp Y        &kp U  &lt 5 I    &lt 5 O  &kp P
+&kp A             &kp S         &kp D         &kp F        &kp G        &kp LS(LG(S))           &kp BACKSPACE    &kp H        &kp J  &kp K      &kp L    &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V        &kp B        &lt 6 SINGLE_QUOTE      &kp SEMICOLON    &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 8 LANG2  &lt 2 SPACE  &lt 3 LANG1             &lt 7 BACKSPACE  &lt 1 ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
@@ -198,10 +198,10 @@
 
         MOUSE {
             bindings = <
-&tm0 Q Q           &tm0 W W                &tm0 E E                &tm0 R R             &tm0 T T                                                   &trans  &trans    &trans    &trans    &trans
-&tm0 A A           &tm0 S S                &tm0 D D                &tm0 F F             &tm0 G G           &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB2  &mkp MB2
-&tm0 LEFT_SHIFT Z  &tm0 X X                &tm0 C C                &tm0 V V             &tm0 B B           &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
-&tm0 LCTRL LCTRL   &tm0 LEFT_GUI LEFT_GUI  &tm0 LEFT_ALT LEFT_ALT  &lt_to_l10 10 LANG2  &lt_to_l2 2 SPACE  &lt_to_l3 3 LANG1               &trans  &trans                                &trans
+&tm0 Q Q           &tm0 W W                &tm0 E E                &tm0 R R            &tm0 T T                                                   &trans  &trans    &trans    &trans    &trans
+&tm0 A A           &tm0 S S                &tm0 D D                &tm0 F F            &tm0 G G           &trans                          &trans  &trans  &mkp MB1  &mkp MB1  &mkp MB2  &mkp MB2
+&tm0 LEFT_SHIFT Z  &tm0 X X                &tm0 C C                &tm0 V V            &tm0 B B           &tm0 APOSTROPHE APOSTROPHE      &trans  &trans  &mkp MB4  &mkp MB4  &mkp MB5  &mkp MB5
+&tm0 LCTRL LCTRL   &tm0 LEFT_GUI LEFT_GUI  &tm0 LEFT_ALT LEFT_ALT  &lt_to_l10 8 LANG2  &lt_to_l2 2 SPACE  &lt_to_l3 3 LANG1               &trans  &trans                                &trans
             >;
         };
 
@@ -225,32 +225,14 @@
 
         layer_7 {
             bindings = <
-&trans     &kp LC(W)  &trans     &trans     &trans                                 &kp LC(Y)  &trans         &trans     &trans         &trans
-&kp LC(A)  &trans     &trans     &kp LC(F)  &trans  &trans      &trans             &trans     &kp LC(RIGHT)  &kp LC(K)  &kp LC(LEFT)   &trans
-&kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &trans  &trans      &kp LC(SEMICOLON)  &kp LC(N)  &kp LC(PG_UP)  &trans     &kp LC(PG_DN)  &trans
-&trans     &trans     &trans     &trans     &trans  &trans      &trans             &trans                                              &trans
+&trans     &kp LC(W)  &trans     &trans     &kp LC(T)                                 &kp LC(Y)  &trans         &trans     &trans         &trans
+&kp LC(A)  &trans     &trans     &kp LC(F)  &trans     &trans      &trans             &trans     &kp LC(RIGHT)  &kp LC(K)  &kp LC(LEFT)   &trans
+&kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &trans     &trans      &kp LC(SEMICOLON)  &kp LC(N)  &kp LC(PG_UP)  &trans     &kp LC(PG_DN)  &kp RSHFT
+&trans     &trans     &trans     &trans     &trans     &trans      &trans             &trans                                              &trans
             >;
         };
 
         layer_8 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        layer_9 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        layer_10 {
             bindings = <
 &trans  &kp LS(LC(N7))  &kp LS(LC(N8))  &kp LS(LC(N9))  &trans                             &trans     &kp LC(R)  &kp LS(LC(R))  &kp LC(F)  &trans
 &trans  &kp LS(LC(N4))  &kp LS(LC(N5))  &kp LS(LC(N6))  &trans  &trans      &kp LA(S)      &trans     &kp LC(U)  &kp LC(Q)      &kp LC(E)  &trans
