@@ -203,9 +203,9 @@
 
         ARROW {
             bindings = <
-&kp PG_UP       &kp LC(LS(TAB))   &kp UP_ARROW          &kp LC(TAB)        &kp PG_DN                                   &kp LG(TAB)   &kp TAB             &kp LG(UP_ARROW)  &kp LS(TAB)        &trans
+&kp PG_UP       &kp LC(LS(TAB))   &kp UP_ARROW          &kp LC(TAB)        &kp PG_DN                                   &kp LG(TAB)   &kp TAB             &kp LG(UP_ARROW)  &kp LS(TAB)        &kp LA(F4)
 &kp HOME        &kp LEFT_ARROW    &kp DOWN_ARROW        &kp RIGHT_ARROW    &kp END    &trans      &kp LA(PRINTSCREEN)  &kp LG(LEFT)  &kp LA(LEFT_ARROW)  &kp LG(DOWN)      &kp LA(RIGHT)      &kp LG(RIGHT)
-&kp LEFT_SHIFT  &kp LS(LC(LEFT))  &kp LS(LC(UP_ARROW))  &kp LS(LC(RIGHT))  &trans     &trans      &kp LS(LG(S))        &trans        &kp LS(LG(LEFT))    &kp LG(D)         &kp LS(LG(RIGHT))  &kp LA(F4)
+&kp LEFT_SHIFT  &kp LS(LC(LEFT))  &kp LS(LC(UP_ARROW))  &kp LS(LC(RIGHT))  &trans     &trans      &kp LS(LG(S))        &trans        &kp LS(LG(LEFT))    &kp LG(D)         &kp LS(LG(RIGHT))  &kp RIGHT_SHIFT
 &trans          &trans            &kp LS(LC(DOWN))      &trans             &trans     &trans      &kp BACKSPACE        &kp LEFT_ALT                                                           &trans
             >;
 
